@@ -18,7 +18,7 @@ public class Car {
         return model;
     }
 
-    public void setModel(String carModel) {
+    public void setModel(String model) {
         this.model = model;
     }
 
