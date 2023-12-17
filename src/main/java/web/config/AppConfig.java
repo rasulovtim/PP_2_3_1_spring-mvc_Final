@@ -26,7 +26,6 @@ public class AppConfig {
     @Autowired
     private Environment environment;
 
-    /************* Start Spring JPA config details **************/
     @Bean(name = "entityManagerFactory")
     public LocalContainerEntityManagerFactoryBean getEntityManagerFactoryBean() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
@@ -50,8 +49,6 @@ public class AppConfig {
                 getEntityManagerFactoryBean().getObject());
         return jpaTransactionManager;
     }
-
-    /************* End Spring JPA config details **************/
 
     @Bean
     public DataSource dataSource() {

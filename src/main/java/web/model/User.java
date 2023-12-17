@@ -1,32 +1,43 @@
 package web.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
+    @NotEmpty(message = "Name should not be empty")
+    @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
     @Column
     private String name;
+    @Min(value = 0, message = "Age should be grater than 0")
     @Column
-    private String surname;
+    private int age;
+    @Email
+    @NotEmpty(message = "Email should not be empty")
     @Column
     private String email;
-    public User(){}
 
-    public User(String name, String surname, String email) {
+    public User() {
+    }
+
+    public User(String name, int age, String email) {
         this.name = name;
-        this.surname = surname;
+        this.age = age;
         this.email = email;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -38,12 +49,12 @@ public class User {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
+    public int getAge() {
+        return age;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public String getEmail() {
@@ -59,7 +70,7 @@ public class User {
         return "User{" +
                "id=" + id +
                ", name='" + name + '\'' +
-               ", surname='" + surname + '\'' +
+               ", age=" + age +
                ", email='" + email + '\'' +
                '}';
     }
